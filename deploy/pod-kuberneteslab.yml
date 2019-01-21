@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kuberneteslab.kubernetes.gabrielmalakias.com
+  labels:
+    app: kuberneteslab
+spec:
+  containers:
+  - name: kuberneteslab
+    image: gabrielmalakias/kuberneteslab
+    ports:
+    - containerPort: 4567
