@@ -9,4 +9,5 @@ spec:
   - name: kuberneteslab
     image: gabrielmalakias/kuberneteslab
     ports:
-    - containerPort: 4567
+    - name: klab-port
+      containerPort: 4567
