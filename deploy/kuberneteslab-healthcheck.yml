@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kuberneteslab-deployment
+  labels:
+    app: kuberneteslab
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kuberneteslab
+  template:
+    metadata:
+      labels:
+        app: kuberneteslab
+    spec:
+      containers:
+      - name: kuberneteslab
+        image: gabrielmalakias/kuberneteslab
+        ports:
+        - containerPort: 4567
+        livenessProbe:
+          httpGet:
+            path: /health_check
+            port: 4567
+          initialDelaySeconds: 15
+          timeoutSeconds: 30
+
+

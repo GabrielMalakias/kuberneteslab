@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: kuberneteslab.kubernetes.gabrielmalakias.com
+  labels:
+    app: kuberneteslab
+spec:
+  replicas: 2
+  selector:
+    app: kuberneteslab
+  template:
+    metadata:
+      labels:
+        app: kuberneteslab
+    spec:
+      containers:
+      - name: kuberneteslab
+        image: gabrielmalakias/kuberneteslab
+        ports:
+        - name: klab-port
+          containerPort: 4567
