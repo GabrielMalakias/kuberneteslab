@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: elixir_app_service
+spec:
+  ports:
+   - port: 80
+     targetPort: elixir_app-port
+     protocol: TCP
+  selector:
+    app: elixir_app
+  type: LoadBalancer
+

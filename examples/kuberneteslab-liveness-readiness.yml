@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ruby_app-deployment
+  labels:
+    app: ruby_app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ruby_app
+  template:
+    metadata:
+      labels:
+        app: ruby_app
+    spec:
+      containers:
+      - name: ruby_app
+        image: gabrielmalakias/ruby_app
+        ports:
+        - name: klab-port
+          containerPort: 4567
+        livenessProbe:
+          httpGet:
+            path: /health_check
+            port: 4567
+          initialDelaySeconds: 15
+          timeoutSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /health_check
+            port: 4567
+          initialDelaySeconds: 15
+          timeoutSeconds: 30
+
+

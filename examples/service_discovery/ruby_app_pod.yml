@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ruby_app
+  labels:
+    app: ruby_app
+spec:
+  containers:
+  - name: ruby_app
+    image: gabrielmalakias/ruby_app
+    ports:
+    - name: ruby_app-port
+      containerPort: 4567
