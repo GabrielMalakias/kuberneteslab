@@ -1,10 +1,15 @@
 require 'sinatra'
 require 'json'
+require_relative 'app/client/elixir_app'
 
 set :bind, '0.0.0.0'
 
 get '/' do
-  "Running Ruby App: Env Vars #{ENV['USERNAME']} password: #{ENV['PASSWORD']}"
+  <<-BODY
+  \nRunning Ruby App: Env Vars #{ENV['USERNAME']} password: #{ENV['PASSWORD']}
+  \nElixir: #{ENV['ELIXIRAPPSERVICE_SERVICE_HOST']}
+  \nRequest from Elixir App: #{App::Client::ElixirApp.new.get}
+  BODY
 end
 
 get '/health_check' do

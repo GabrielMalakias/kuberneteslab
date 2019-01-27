@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: elixir_app
+  name: elixirapp
   labels:
-    app: elixir_app
+    app: elixirapp
 spec:
   containers:
-  - name: elixir_app
+  - name: elixirapp
     image: gabrielmalakias/elixir_app
     ports:
-    - name: elixir_app-port
+    - name: elixirapp-port
       containerPort: 4000

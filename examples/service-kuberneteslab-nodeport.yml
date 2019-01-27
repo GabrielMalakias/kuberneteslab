@@ -9,6 +9,6 @@ spec:
      targetPort: klab-port
      protocol: TCP
  selector:
-   app: ruby_app
+   app: rubyapp
  type: NodePort
 

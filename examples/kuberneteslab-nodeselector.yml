@@ -3,19 +3,19 @@ kind: Deployment
 metadata:
   name: ruby_app-deployment
   labels:
-    app: ruby_app
+    app: rubyapp
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: ruby_app
+      app: rubyapp
   template:
     metadata:
       labels:
-        app: ruby_app
+        app: rubyapp
     spec:
       containers:
-      - name: ruby_app
+      - name: rubyapp
         image: gabrielmalakias/ruby_app
         ports:
         - name: klab-port

@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: ruby_app.kubernetes.gabrielmalakias.com
+  name: ruby_app
   labels:
-    app: ruby_app
+    app: rubyapp
 spec:
   containers:
-  - name: ruby_app
+  - name: rubyapp
     image: gabrielmalakias/ruby_app
     ports:
     - name: klab-port
