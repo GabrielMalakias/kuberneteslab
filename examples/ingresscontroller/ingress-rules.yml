@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-rules
+spec:
+  rules:
+  - host: rubyapp.kubernetes.gabrielmalakias.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: rubyapp-service
+          servicePort: 80
+  - host: elixirapp.kubernetes.gabrielmalakias.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: elixirapp-service
+          servicePort: 80

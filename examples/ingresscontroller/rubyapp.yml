@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rubyapp
+  labels:
+    app: rubyapp
+spec:
+  containers:
+  - name: rubyapp
+    image: gabrielmalakias/ruby_app
+    ports:
+    - name: rubyapp-port
+      containerPort: 4567
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rubyapp-service
+spec:
+  ports:
+  - port: 80
+    targetPort: 4567
+    protocol: TCP
+    name: http
+  selector:
+    app: rubyapp
+  type: NodePort
