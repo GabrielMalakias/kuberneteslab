@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rubyapp-affinity
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rubyapp-affinity
+    spec:
+      containers:
+      - name: rubyapp
+        image: gabrielmalakias/ruby_app
+        ports:
+        - containerPort: 4567
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: redis-affinity
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis-affinity
+    spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: "app"
+                    operator: In
+                    values:
+                    - rubyapp-affinity
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: redis
+        image: redis
+        ports:
+        - name: redis-port
+          containerPort: 6379

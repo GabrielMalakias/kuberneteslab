@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rubyapp-deployment
+  labels:
+    app: rubyapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rubyapp
+  template:
+    metadata:
+      labels:
+        app: rubyapp
+    spec:
+      containers:
+      - name: rubyapp
+        image: gabrielmalakias/ruby_app
+        ports:
+        - containerPort: 4567
+        volumeMounts:
+        - mountPath: /myvol
+          name: myvolume
+      volumes:
+      - name: myvolume
+        awsElasticBlockStore:
+          volumeID: vol-08152d6544d3de020

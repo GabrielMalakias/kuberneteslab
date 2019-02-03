@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rubyapp3-antiaffinity
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rubyapp3-antiaffinity
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: "app"
+                      operator: In
+                      values:
+                      - rubyapp-antiaffinity
+                      - rubyapp
+                topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: rubyapp
+        image: gabrielmalakias/ruby_app
+        ports:
+        - containerPort: 4567

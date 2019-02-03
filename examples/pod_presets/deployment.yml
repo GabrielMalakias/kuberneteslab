@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rubyapp-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rubyapp
+  template:
+    metadata:
+      labels:
+        app: rubyapp
+    spec:
+      containers:
+      - name: rubyapp
+        image: gabrielmalakias/ruby_app
+        ports:
+        - containerPort: 4567
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elixirapp-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: elixirapp
+  template:
+    metadata:
+      labels:
+        app: elixirapp
+        environment: production
+    spec:
+      containers:
+      - name: elixirapp
+        image: gabrielmalakias/elixir_app
+        ports:
+        - name: elixirapp-port
+          containerPort: 4000
+

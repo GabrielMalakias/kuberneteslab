@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: monitoring
+  labels:
+    app: monitoring
+spec:
+  template:
+    metadata:
+      labels:
+        name: agent
+    spec:
+      containers:
+      - name: rubyapp
+        image: gabrielmalakias/ruby_app
+        ports:
+        - name: rubyapp-port
+          containerPort: 4567
+
