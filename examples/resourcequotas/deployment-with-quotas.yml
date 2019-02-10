@@ -1,11 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rubyapp-deployment
+  name: rubyapp-deployment-with-quotas
+  namespace: production
   labels:
     app: rubyapp
 spec:
-  replicas: 10
+  replicas: 3
   selector:
     matchLabels:
       app: rubyapp
@@ -19,3 +20,10 @@ spec:
         image: gabrielmalakias/ruby_app
         ports:
         - containerPort: 4567
+        resources:
+          requests:
+            cpu: 200m
+            memory: 0.5Gi
+          limits:
+            cpu: 400m
+            memory: 1Gi

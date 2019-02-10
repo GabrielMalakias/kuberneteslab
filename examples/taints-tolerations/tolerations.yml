@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rubyapp-deployment
+  labels:
+    app: rubyapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rubyapp
+  template:
+    metadata:
+      labels:
+        app: rubyapp
+    spec:
+      containers:
+      - name: rubyapp
+        image: gabrielmalakias/ruby_app
+        ports:
+        - containerPort: 4567
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rubyapp-toleration
+  labels:
+    app: rubyapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rubyapp
+  template:
+    metadata:
+      labels:
+        app: rubyapp
+    spec:
+      tolerations:
+      - key: "type"
+        operator: "Equal"
+        value: "specialnode"
+        effect: "NoSchedule"
+      containers:
+      - name: rubyapp
+        image: gabrielmalakias/ruby_app
+        ports:
+        - containerPort: 4567
