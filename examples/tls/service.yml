@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:eu-central-1:623015906592:certificate/547fcd75-45b7-4a5d-99e6-abd63b58ccd8"
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "http"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
+    service.beta.kubernetes.io/aws-load-balancer-connection-draining-enabled: "true"
+    service.beta.kubernetes.io/aws-load-balancer-connection-draining-timeout: "60"
+    service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags: "environment=production,app=rubyapp"
+spec:
+  ports:
+   - name: http
+     port: 80
+     targetPort: rubyapp-port
+     protocol: TCP
+   - name: https
+     port: 443
+     targetPort: rubyapp-port
+     protocol: TCP
+  selector:
+    app: rubyapp
+  type: LoadBalancer
