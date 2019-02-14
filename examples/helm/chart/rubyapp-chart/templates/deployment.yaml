@@ -51,7 +51,7 @@ spec:
               secretKeyRef:
               {{- if .Values.postgresql.enabled }}
                 name: {{ template "postgresql.fullname" . }}
-                key: postgresql-password
+                key: postgres-password
               {{- else }}
                 name: unknown
                 key: db-password

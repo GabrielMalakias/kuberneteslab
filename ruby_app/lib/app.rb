@@ -15,6 +15,7 @@ result = PG::Connection.ping(ENV['POSTGRES_HOST'],
 
 get '/' do
   <<-BODY
+  \n V0.0.2
   \nDATABASE result: #{result}
   \nRunning Ruby App: Env Vars #{ENV['USERNAME']} password: #{ENV['PASSWORD']}
   \nElixir: #{ENV['ELIXIRAPPSERVICE_SERVICE_HOST']}
