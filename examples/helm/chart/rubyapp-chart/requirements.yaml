@@ -1,0 +1,7 @@
+dependencies:
+  - name: postgresql
+    version: 3.0.0
+    repository: https://kubernetes-charts.storage.googleapis.com
+    condition: postgresql.enabled
+    tags:
+     - rubyapp-database
